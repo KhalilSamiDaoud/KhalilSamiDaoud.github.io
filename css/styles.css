@@ -1,0 +1,1488 @@
+:ROOT {
+    --primary-theme: #0d9488;
+    --secondary-theme: #1e293b;
+    --background-theme: #f8fafc;
+    --front-primary-theme: #ffffff;
+    --font-secondary-theme: #ffffff;
+    --text-theme: #334155;
+    --muted-text-theme: #475569;
+    --band-theme: #e2e8f0;
+    --rule-theme: #94a3b8;
+    /* Education/projects entries shift left and experience entries shift right by half this; 0 on narrow windows */
+    --section-offset: clamp(0px, calc((100vw - 1150px) * 1.5), 450px);
+    --nav-size: 64px;
+    --site-default-font: arial;
+    scroll-behavior: smooth !important;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-theme);
+    color: var(--text-theme);
+    font-family: var(--site-default-font);
+    scroll-behavior: smooth !important;
+}
+
+.nav {
+    position: fixed;
+    background: var(--secondary-theme);
+    top: 0;
+    left: 0;
+    width: var(--nav-size);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(40px, 9vh, 90px);
+}
+
+.nav .nav-icon {
+    color: white;
+    cursor: pointer;
+    opacity: 0.5;
+    font-size: 40px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav .nav-icon:hover {
+    opacity: 1;
+}
+
+.nav .nav-icon:after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 3px;
+    background: var(--primary-theme);
+    transition: width .2s;
+  }
+  
+  .nav .nav-icon:hover:after {
+    width: 100%;
+    transition: width .2s;
+  }
+
+  .nav .nav-icon.active {
+    opacity: 1;
+    border-bottom: 3px solid var(--primary-theme);
+  }
+
+.nav-item-tool-tip {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 5px 0px 0px var(--nav-size);  
+    padding: 5px 10px 5px 10px;
+    background-color: var(--secondary-theme);
+    color: white;
+    border-radius: 13px;
+    font-size: 15px;
+    text-align: center;
+    z-index: 9999;
+}
+
+.canvas {
+    width: calc(100% - var(--nav-size));
+    height: 100%;
+}
+
+.triangle-canvas {
+    position: relative;
+    top: 0;
+    left: var(--nav-size);
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+    background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+    z-index: 1;
+}
+
+.triangle {
+    position: absolute;
+    z-index: -1;
+}
+
+.trianlgle-canvas-header {
+    position: absolute;
+    color: #ffffff;
+    top: 40%;
+    left: 50%;
+    margin: 0;
+    white-space: nowrap;
+    transform: translate(-50%, -50%);
+    font-size: clamp(36px, 5.5vw, 68px);
+    font-weight: bold;
+    letter-spacing: 2px;
+    z-index: 2;
+}
+
+.trianlgle-canvas-flavor {
+    position: absolute;
+    color: #99f6e4;
+    top: 55%;
+    left: 50%;
+    margin: 0;
+    white-space: nowrap;
+    transform: translate(-50%, -50%);
+    font-size: clamp(16px, 2.2vw, 28px);
+    letter-spacing: 1px;
+    z-index: 2;
+}
+
+/* Social quick links under the tagline */
+.banner-links {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    gap: 16px;
+    z-index: 2;
+}
+
+.banner-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    background-color: rgba(15, 23, 42, 0.35);
+    color: #ffffff;
+    transition: background-color 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.banner-links a:hover,
+.banner-links a:focus-visible {
+    background-color: var(--primary-theme);
+    border-color: var(--primary-theme);
+    transform: translateY(-2px);
+}
+
+.banner-links svg {
+    width: 22px;
+    height: 22px;
+}
+
+.about {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 60px;
+    margin: 50px 20px 0px calc(var(--nav-size) + 20px);
+}
+
+.about img {
+    height: 225px;
+    width: 225px;
+    flex-shrink: 0;
+    /* Lines the top of the photo up with the top of the "Bio" letters: the text column's 50px top margin
+       plus ~10px of space above the capital letters inside the heading's line box */
+    margin-top: 60px;
+    border-radius: 50%;
+    background-color: var(--secondary-theme);
+}
+
+.about-text {
+    max-width: min(40%, 65ch);
+    margin-top: 50px;
+}
+
+.about p {
+    font-size: 22px;
+    line-height: 1.6;
+    color: var(--text-theme);
+    padding: 5px 0 5px 0;
+    margin: 0 0 20px 0;
+    height: fit-content;
+}
+
+.about p.about-interests {
+    padding-left: 10px;
+    border-left: 5px solid var(--primary-theme);
+}
+
+.about-subheading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 40px 0 10px 0;
+    font-size: 28px;
+    color: var(--secondary-theme);
+}
+
+.about-subheading:first-child {
+    margin-top: 0;
+}
+
+.about-bio-heading {
+    font-size: 3rem;
+    font-weight: bold;
+    position: relative;
+    width: fit-content;
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+}
+
+.about-subheading .material-icons {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 24px;
+    color: white;
+    background: var(--primary-theme);
+    border-radius: 20px;
+}
+
+.scrollbar {
+    margin-left: 10px;
+    float: left;
+    height: 300px;
+    width: 15px;
+    background: #e0e0e0;
+    overflow-y: scroll;
+    margin-bottom: 25px;
+  }
+  
+  .scrollbar-primary::-webkit-scrollbar {
+    width: 10px;
+    background-color: #e0e0e0;
+  }
+  
+  .scrollbar-primary::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    background-color: #9e9e9e;
+  }
+  
+  .scrollbar-danger::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    background-color: #f5f5f5;
+    border-radius: 5px;
+  }
+
+  .fade-in {
+    animation: fadeIn ease 0.5s;
+    -webkit-animation: fadeIn ease 0.5s;
+    -moz-animation: fadeIn ease 0.5s;
+    -o-animation: fadeIn ease 0.5s;
+    -ms-animation: fadeIn ease 0.5s;
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }
+  
+  @-moz-keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }
+  
+  @-webkit-keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }
+  
+  @-o-keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }
+  
+  @-ms-keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+  }
+}
+
+  .fade-out {
+    animation: fadeOut ease 0.5s;
+    -webkit-animation: fadeOut ease 0.5s;
+    -moz-animation: fadeOut ease 0.5s;
+    -o-animation: fadeOut ease 0.5s;
+    -ms-animation: fadeOut ease 0.5s;
+  }
+  @keyframes fadeOut {
+    0% {
+      opacity:1;
+    }
+    100% {
+      opacity:0;
+    }
+  }
+  
+  @-moz-keyframes fadeOut {
+    0% {
+      opacity:1;
+    }
+    100% {
+      opacity:0;
+    }
+  }
+  
+  @-webkit-keyframes fadeOut {
+    0% {
+      opacity:1;
+    }
+    100% {
+      opacity:0;
+    }
+  }
+  
+  @-o-keyframes fadeOut {
+    0% {
+      opacity:1;
+    }
+    100% {
+      opacity:0;
+    }
+  }
+  
+  @-ms-keyframes fadeOut {
+    0% {
+      opacity:1;
+    }
+    100% {
+      opacity:0;
+  }
+}
+
+.section-container {
+  margin-left: var(--nav-size);
+  width: calc(100% - var(--nav-size));
+  height: fit-content;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 0.45s ease-out, transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* 'none' rather than translateY(0): a leftover transform can make Chrome draw the element at a fractional pixel
+   position, which blurs fine detail like the resume text */
+.reveal.revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* About section: rises in on page load, one piece after another */
+.about img,
+.about-text > * {
+  animation: rise-in 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.about img                     { animation-delay: 0.2s; }
+.about-text > *:nth-child(1)   { animation-delay: 0.35s; }
+.about-text > *:nth-child(2)   { animation-delay: 0.45s; }
+.about-text > *:nth-child(3)   { animation-delay: 0.55s; }
+.about-text > *:nth-child(4)   { animation-delay: 0.65s; }
+.about-text > *:nth-child(5)   { animation-delay: 0.75s; }
+.about-text > *:nth-child(n+6) { animation-delay: 0.85s; }
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about img,
+  .about-text > * {
+    animation: none;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+#education,
+#experience .timeline,
+#projects {
+  font-family: 'Inter', var(--site-default-font), sans-serif;
+}
+
+#education {
+  margin-top: 80px;
+}
+
+.education-header,
+.projects-header {
+  position:absolute;
+  /* Vertically centered in the wave (auto margins rather than a transform, so it doesn't clash with the scroll reveal) */
+  top:0;
+  bottom:0;
+  height: fit-content;
+  margin: auto 0;
+  left:61%;
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--secondary-theme);
+  padding-bottom: 8px;
+}
+
+/* Underline starts at the title's left edge and runs past the text, fading out */
+.about-bio-heading::after,
+.education-header::after,
+.experience-header::after,
+.resume-header::after,
+.projects-header::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: calc(100% + 250px);
+  height: 1px;
+  background: linear-gradient(to right, var(--rule-theme) 70%, transparent);
+}
+
+.timeline-pre {
+  display: block;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  z-index: -100;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: center;
+  background-color: var(--band-theme);
+  gap: 0px;
+  z-index: 100;
+}
+
+.timeline-post {
+  display: block;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  margin-top: 0px;
+  z-index: -100;
+}
+
+.timeline-entry {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+}
+
+.node-date {
+  width: 175px;
+  font-size: clamp(13px, 1.4vw, 16px);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: right;
+  color: var(--primary-theme);
+}
+
+/* Ring, teal disc and symbol are all centered with flexbox instead of hand-tuned offsets, which left some icons
+   a few pixels off-center (most noticeably in the stacked mobile layout) */
+.node-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 55px;
+  height: 55px;
+  border: 2px solid var(--primary-theme);
+  border-radius: 50%;
+}
+
+.verticle-spacer {
+  height: 25px;
+  width:0;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 250px;
+  border: 1px solid var(--primary-theme);
+}
+
+.node-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  background: var(--primary-theme);
+  border-radius: 50%;
+}
+
+.node-icon span {
+  font-size: 30px !important;
+  line-height: 1;
+  color: white;
+}
+
+.node-spacer {
+  border: 1px solid var(--primary-theme);
+  height: 0;
+  width: 50px;
+}
+
+.node-title {
+  font-size: clamp(18px, 2.25vw, 24px);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--secondary-theme);
+  margin:0;
+  padding: 0;
+}
+
+.node-description {
+  width: 425px;
+  font-size: clamp(14px, 1.6vw, 17px);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--muted-text-theme);
+  margin: 4px 0 0 0;
+  padding: 0;
+}
+
+.node-role {
+  font-size: clamp(14px, 1.6vw, 17px);
+  font-weight: 600;
+  color: var(--primary-theme);
+  margin: 2px 0 0 0;
+}
+
+.node-stack {
+  width: 425px;
+  font-size: clamp(12px, 1.3vw, 14px);
+  color: var(--muted-text-theme);
+  margin: 8px 0 0 0;
+}
+
+.node-stack strong {
+  color: var(--secondary-theme);
+}
+
+.experience-header,
+.resume-header {
+  margin: 0;
+  margin-left: 200px;
+  margin-top: -60px;
+  position: relative;
+  width: fit-content;
+  font-size: 3rem;
+  color: var(--secondary-theme);
+  padding-bottom: 8px;
+}
+
+/* Centered over the resume viewer, and pulled a bit closer to the projects wave above it
+   (the wave image's lower part is empty space) */
+.resume-header {
+  margin-top: -100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Centered title: underline fades out on both ends instead of trailing off to the right */
+.resume-header::after {
+  left: -180px;
+  width: calc(100% + 360px);
+  background: linear-gradient(to right, transparent, var(--rule-theme) 30%, var(--rule-theme) 70%, transparent);
+}
+
+/* ---- Skills panel (desktop only: beside the work experience tree) ---- */
+/* The tree wrapper keeps the entries centered the way the timeline itself did before the panel was added */
+.experience-tree {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.skills-panel {
+  box-sizing: border-box;
+  padding: 32px 32px 12px 32px;
+  background-color: var(--front-primary-theme);
+  border-radius: 14px;
+  border-top: 4px solid var(--primary-theme);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06), 0 8px 24px rgba(15, 23, 42, 0.08);
+  font-family: 'Inter', var(--site-default-font), sans-serif;
+}
+
+.skills-title {
+  margin: 0 0 24px 0;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--secondary-theme);
+}
+
+.skill-group {
+  margin-bottom: 22px;
+}
+
+.skill-group-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 10px 0;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted-text-theme);
+}
+
+.skill-group-title .material-icons {
+  font-size: 18px;
+  color: var(--primary-theme);
+}
+
+.skill-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.skill-chips li {
+  padding: 7px 14px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #115e59;
+  background-color: #f0fdfa;
+  border: 1px solid #99f6e4;
+  border-radius: 999px;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.skill-chips li:hover {
+  color: #ffffff;
+  background-color: var(--primary-theme);
+  border-color: var(--primary-theme);
+  transform: translateY(-1px);
+}
+/* Work experience: mirrored timeline (details on the left, dates on the right) on the plain page background */
+.timeline-right {
+  background-color: transparent;
+  padding-bottom: 100px;
+  /* Shifts the centered entries right by half this amount; shrinks to 0 on narrower windows so nothing overflows */
+  padding-left: var(--section-offset);
+  padding-top: 198px;
+}
+
+/* Match the experience title's 198px gap. The centered title leaves (wave height - ~66px title) / 2 below it,
+   and the wave is 236/1440 of the section width, so the padding makes up the rest */
+#education .timeline {
+  padding-top: max(0px, calc(231px - (100vw - var(--nav-size)) * 0.082));
+}
+
+/* Projects title keeps the education title's left offset (61%) and sits inside the large triangle of its
+   wave (peak at ~69%), anchored near the triangle's wide base and scaled down on narrower windows so it still fits */
+.projects-header {
+  top: auto;
+  bottom: 20px;
+  margin: 0;
+  font-size: clamp(2rem, 3.4vw, 3rem);
+}
+
+/* Title bottom sits 20px above the band, so this completes the same 198px gap as the other sections */
+#projects .timeline {
+  padding-top: 178px;
+}
+
+/* Shifts the centered entries left by half this amount; shrinks to 0 on narrower windows so nothing overflows */
+#education .timeline,
+#projects .timeline {
+  padding-right: var(--section-offset);
+}
+
+.node-links {
+  margin: 10px 0 0 0;
+  display: flex;
+  gap: 18px;
+}
+
+.node-links a,
+.projects-more {
+  color: var(--primary-theme);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.node-links a:hover,
+.projects-more:hover {
+  text-decoration: underline;
+}
+
+.projects-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 40px;
+  font-size: 18px;
+}
+
+/* Same width as a timeline entry row (and centered the same way), so the disclaimer can line up with the
+   left edge of the date text: dates are right-aligned in their 175px column, and the longest ("MAR 2022")
+   starts ~85px in */
+.projects-disclaimer-row {
+  width: 864px;
+  max-width: 100%;
+}
+
+.projects-disclaimer {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 40px 85px;
+  padding: 8px 16px;
+  font-size: 15px;
+  color: var(--muted-text-theme);
+  background-color: var(--front-primary-theme);
+  border-left: 4px solid var(--primary-theme);
+  border-radius: 6px;
+}
+
+.projects-disclaimer .material-icons {
+  font-size: 20px;
+  color: var(--primary-theme);
+}
+
+.projects-more .material-icons {
+  font-size: 20px;
+}
+
+.timeline-right .timeline-entry {
+  flex-direction: row-reverse;
+}
+
+/* Date ranges are longer than education dates: keep them on one line */
+.timeline-right .node-date {
+  width: 250px;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.timeline-right .node-data {
+  text-align: right;
+}
+
+/* Shifts the connecting line under the circles: (425px details - 250px date) / 2 off-center, doubled */
+.timeline-right .verticle-spacer {
+  margin-right: 0;
+  margin-left: 175px;
+}
+
+.resume-viewer {
+  max-width: 840px;
+  margin: 80px auto 100px auto;
+  padding: 0 20px;
+  font-family: 'Inter', var(--site-default-font), sans-serif;
+}
+
+/* Zoom / full screen controls on the left, open / download links on the right */
+.resume-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 24px;
+  margin-bottom: 12px;
+}
+
+.resume-controls {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  background-color: var(--front-primary-theme);
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+}
+
+.resume-controls[hidden],
+.resume-controls button[hidden] {
+  display: none;
+}
+
+.resume-controls button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--secondary-theme);
+  cursor: pointer;
+}
+
+.resume-controls button:hover:not(:disabled),
+.resume-controls button:focus-visible {
+  background-color: var(--band-theme);
+  color: var(--primary-theme);
+}
+
+.resume-controls button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.resume-controls .material-icons {
+  font-size: 22px;
+}
+
+.resume-zoom-level {
+  min-width: 48px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--secondary-theme);
+}
+
+.resume-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 24px;
+}
+
+.resume-actions a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--primary-theme);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.resume-actions a:hover {
+  text-decoration: underline;
+}
+
+.resume-actions .material-icons {
+  font-size: 20px;
+}
+
+/* Zoomed in, the page is wider than the viewer: scroll sideways inside the viewer instead of the whole page */
+.resume-pages {
+  min-height: 200px;
+  overflow-x: auto;
+}
+
+/* Each PDF page is drawn to a canvas sized by the zoom level (set inline by js/resumeViewer.js); the canvas
+   holds extra pixels for sharp HiDPI rendering */
+.resume-page {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 auto 24px auto;
+  border-radius: 8px;
+  /* The outline is a shadow ring rather than a border: a border would take up width and make the browser
+     shrink the drawn page by 2px, which blurs the text. A ring takes no space, so pixels map 1:1 */
+  box-shadow: 0 0 0 1px #cbd5e1, 0 4px 16px rgba(15, 23, 42, 0.12);
+  background-color: var(--front-primary-theme);
+}
+
+/* Desktop: no horizontal scroll bar; when zoomed in, drag the page to move around (js/resumeViewer.js) */
+@media only screen and (min-width: 1101px) {
+  .resume-pages {
+    scrollbar-width: none;
+  }
+
+  .resume-pages::-webkit-scrollbar {
+    display: none;
+  }
+
+  .resume-pages.zoomed {
+    cursor: grab;
+  }
+
+  .resume-pages.zoomed.dragging {
+    cursor: grabbing;
+    user-select: none;
+  }
+}
+
+/* Full screen: the viewer fills the screen on the band color and scrolls on its own */
+.resume-viewer:fullscreen {
+  max-width: none;
+  margin: 0;
+  padding: 20px;
+  overflow-y: auto;
+  background-color: var(--band-theme);
+}
+
+.resume-viewer:fullscreen .resume-toolbar,
+.resume-viewer:fullscreen .resume-pages {
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.resume-fallback {
+  color: var(--muted-text-theme);
+}
+
+.resume-fallback a {
+  color: var(--primary-theme);
+  font-weight: 600;
+}
+
+.footer {
+  margin-left: var(--nav-size);
+  padding: 50px 40px 30px 40px;
+  /* Teal from the banner's triangle colors (js/triangleCanvas.js) */
+  background-color: #134e4a;
+  color: #cbd5e1;
+  font-family: 'Inter', var(--site-default-font), sans-serif;
+  font-size: 15px;
+}
+
+.footer-columns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.footer-column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-column p {
+  margin: 0;
+}
+
+.footer-name {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.footer-heading {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #99f6e4;
+}
+
+.footer-column a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #cbd5e1;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.footer-column a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.footer-column a .material-icons {
+  font-size: 18px;
+}
+
+/* Brand icons (not in Material Icons) drawn inline at the same size */
+.footer-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.footer-legal {
+  max-width: 1000px;
+  margin: 40px auto 0 auto;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 13px;
+  color: #cbd5e1;
+}
+
+.footer-legal p {
+  margin: 0 0 6px 0;
+}
+
+/*
+MOBILE STYLES
+*/
+
+@media only screen and (max-width: 1100px) {
+  /* ---- Nav: a bar across the bottom of the screen ---- */
+  .nav {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: var(--nav-size);
+    gap: clamp(16px, 6vw, 90px);
+    flex-direction: row;
+    z-index: 1000;
+  }
+
+  .nav .nav-icon {
+    font-size: 32px;
+  }
+
+  /* Hover tooltips don't make sense on touch screens */
+  .nav-item-tool-tip {
+    display: none;
+  }
+
+  /* ---- Banner ---- */
+  .canvas {
+    width: 100%;
+  }
+
+  .triangle-canvas {
+    left: 0px;
+    height: 360px;
+  }
+
+  .trianlgle-canvas-header {
+    font-size: clamp(28px, 9vw, 68px);
+  }
+
+  .trianlgle-canvas-flavor {
+    width: 90%;
+    white-space: normal;
+    text-align: center;
+    font-size: clamp(15px, 4vw, 28px);
+  }
+
+  /* The tagline can wrap to two lines here: give the links room below it */
+  .banner-links {
+    top: 78%;
+  }
+
+  /* ---- About ---- */
+  .about {
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    margin: 40px 16px 0 16px;
+  }
+
+  .about img {
+    width: 200px;
+    height: 200px;
+    margin-top: 0;
+  }
+
+  .about-text {
+    max-width: 640px;
+    margin-top: 10px;
+  }
+
+  .about p {
+    font-size: 18px;
+  }
+
+  .about-subheading {
+    justify-content: center;
+  }
+
+  .about-bio-heading {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ---- Sections: no left/right offsets, everything centered ---- */
+  .section-container {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  #education {
+    margin-top: 40px;
+  }
+
+  #education .timeline,
+  #projects .timeline,
+  .timeline-right {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  /* Titles in a wave: centered both ways inside it */
+  .education-header,
+  .projects-header {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: fit-content;
+    height: fit-content;
+    margin: auto;
+    font-size: clamp(2rem, 7vw, 3rem);
+  }
+
+  /* Titles on the plain background: centered */
+  .experience-header,
+  .resume-header {
+    margin: 30px auto 0 auto;
+    font-size: clamp(2rem, 7vw, 3rem);
+  }
+
+  /* Centered titles get an underline that fades out on both ends instead of running off to the right */
+  .about-bio-heading::after,
+  .education-header::after,
+  .experience-header::after,
+  .projects-header::after,
+  .resume-header::after {
+    left: -90px;
+    width: calc(100% + 180px);
+    background: linear-gradient(to right, transparent, var(--rule-theme) 30%, var(--rule-theme) 70%, transparent);
+  }
+
+  #education .timeline,
+  #projects .timeline,
+  .timeline-right {
+    padding-top: 40px;
+  }
+
+  /* Scale the waves up so each title fits inside its triangle. The waves are drawn --wave-scale times wider than the
+     screen (the extra is clipped) and shifted so the triangle holding the title sits at the center, under the title:
+     education's peak is at 960/1440 (66.67%) of its wave, projects' at 1000/1440 (69.44%) */
+  .section-container {
+    --wave-scale: 1.6;
+    overflow-x: clip;
+  }
+
+  .timeline-pre,
+  .timeline-post {
+    width: calc(var(--wave-scale) * 100%);
+    max-width: none;
+  }
+
+  /* The bottom waves' lower 128 of 320 viewBox units are empty: trim that space so it doesn't grow with the scale */
+  .timeline-post {
+    margin-bottom: calc(-100vw * var(--wave-scale) * 128 / 1440);
+  }
+
+  #education .timeline-pre,
+  #education .timeline-post {
+    margin-left: calc((0.5 - 0.6667 * var(--wave-scale)) * 100%);
+  }
+
+  #projects .timeline-pre,
+  #projects .timeline-post {
+    margin-left: calc((0.5 - 0.6944 * var(--wave-scale)) * 100%);
+  }
+
+  /* The projects triangle is narrow near its peak: sit the title low, where the triangle is widest */
+  .projects-header {
+    top: auto;
+    bottom: 12px;
+  }
+
+  .timeline-right {
+    padding-bottom: 60px;
+  }
+
+  /* Timeline entries stack: date, icon, then details, all centered */
+  .timeline-entry,
+  .timeline-right .timeline-entry {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 8px;
+    text-align: center;
+  }
+
+  .node-spacer {
+    display: none;
+  }
+
+  .node-date,
+  .timeline-right .node-date {
+    width: auto;
+    margin: 0;
+    text-align: center;
+  }
+
+  .node-data,
+  .timeline-right .node-data {
+    text-align: center;
+  }
+
+  .node-description,
+  .node-stack {
+    width: auto;
+    max-width: 425px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .node-links {
+    justify-content: center;
+  }
+
+  .verticle-spacer,
+  .timeline-right .verticle-spacer {
+    margin: 12px auto;
+  }
+
+  /* The tree wrapper is a plain block on mobile, so its inline "More on GitHub" link needs centering explicitly */
+  .projects-tree {
+    text-align: center;
+  }
+
+  /* Entries are stacked and centered on mobile, so the disclaimer is centered too */
+  .projects-disclaimer-row {
+    width: auto;
+    text-align: center;
+  }
+
+  .projects-disclaimer {
+    margin: 0 0 30px 0;
+    text-align: left;
+  }
+
+  /* ---- Resume ---- */
+  .resume-viewer {
+    margin: 45px auto 60px auto;
+    padding: 0 16px;
+  }
+
+  .resume-toolbar {
+    justify-content: center;
+  }
+
+  .resume-actions {
+    justify-content: center;
+  }
+
+  /* ---- Footer: centered, with room for the bottom nav ---- */
+  .footer {
+    margin-left: 0;
+    padding: 40px 20px calc(var(--nav-size) + 30px) 20px;
+    text-align: center;
+  }
+
+  .footer-columns {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .footer-column {
+    align-items: center;
+  }
+}
+
+/* Phones: titles take up more of the screen, so the waves scale up further */
+@media only screen and (max-width: 700px) {
+  .section-container {
+    --wave-scale: 2.5;
+  }
+}
+
+/* ---- Desktop: the resume viewer sits beside the projects tree instead of in its own section ---- */
+@media only screen and (min-width: 1101px) {
+  /* js/resumeViewer.js moves the viewer into the projects section at this width, so its own section and nav icon go */
+  #resume,
+  .nav-icon[data-target="resume"] {
+    display: none;
+  }
+
+  /* Two columns: tree on the left, resume on the right (replaces the left/right offset) */
+  #projects .timeline {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 48px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  .projects-tree {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: 820px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  /* Stays in view while scrolling through the projects next to it */
+  .resume-slot-projects {
+    flex: 0 1 560px;
+    min-width: 380px;
+    position: sticky;
+    top: 24px;
+  }
+
+  .resume-slot-projects .resume-viewer:not(:fullscreen) {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* A more compact tree so it fits beside the resume: narrower date column and connectors, flexible details */
+  #projects .timeline-entry {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+  }
+
+  #projects .node-date {
+    width: 110px;
+    flex-shrink: 0;
+  }
+
+  #projects .node-spacer {
+    width: 30px;
+    flex-shrink: 0;
+  }
+
+  #projects .node-data {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  #projects .node-description,
+  #projects .node-stack {
+    width: auto;
+    max-width: 425px;
+  }
+
+  /* Connecting lines sit under the icon circles: 110 date + 25 gap + 30 connector + 25 gap + half the 59px circle,
+     less 1px for the line's own width */
+  #projects .verticle-spacer {
+    align-self: flex-start;
+    margin: 10px 0 10px 218px;
+  }
+
+  /* Disclaimer lines up with the start of the date text (right-aligned in the 110px column, ~90px wide) */
+  #projects .projects-disclaimer-row {
+    width: auto;
+  }
+
+  #projects .projects-disclaimer {
+    margin-left: 20px;
+  }
+
+  /* "More on GitHub" lines up with the project details column: 110 + 25 + 30 + 25 + 59 + 25 + 30 + 25 */
+  #projects .projects-more {
+    align-self: flex-start;
+    margin-left: 329px;
+  }
+}
+
+/* ---- Desktop: skills panel on the left, work experience tree on the right ---- */
+@media only screen and (min-width: 1101px) {
+  /* Replaces the right offset. On narrower desktop widths the panel wraps above the tree instead of squeezing it */
+  .timeline-right {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 40px 80px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  /* Stays in view while scrolling through the jobs next to it */
+  .skills-panel {
+    flex: 1 1 340px;
+    min-width: 280px;
+    max-width: 480px;
+    position: sticky;
+    top: 24px;
+  }
+
+  /* A more compact tree: 240px date column, narrower connectors, flexible details column */
+  .experience-tree {
+    flex: 0 1 819px;
+    min-width: 699px;
+    align-items: stretch;
+  }
+
+  #experience .timeline-entry {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+  }
+
+  #experience .node-date {
+    width: 240px;
+    flex-shrink: 0;
+  }
+
+  #experience .node-spacer {
+    width: 30px;
+    flex-shrink: 0;
+  }
+
+  #experience .node-data {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  /* Details are right-aligned toward the icons, so the capped-width text blocks sit on the right too */
+  #experience .node-description,
+  #experience .node-stack {
+    width: auto;
+    max-width: 425px;
+    margin-left: auto;
+  }
+
+  /* Connecting lines sit under the icon circles, measured from the right: 240 date + 25 gap + 30 connector
+     + 25 gap + half the 59px circle, less 1px for the line's own width */
+  #experience .verticle-spacer {
+    align-self: flex-end;
+    margin: 10px 348px 10px 0;
+  }
+}
+
+/* Mobile: the skills panel is hidden entirely */
+@media only screen and (max-width: 1100px) {
+  .skills-panel {
+    display: none;
+  }
+}
